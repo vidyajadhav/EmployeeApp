@@ -79,26 +79,20 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<!-- <plugin>
-			      <groupId>org.codehaus.mojo</groupId>
-			      <artifactId>sonar-maven-plugin</artifactId>
-			      <version>2.0</version>
-			      <configuration>
-		            <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-		            <sonar.language>java</sonar.language>
-		            <sonar.exclusions>
-		                **/test/*
-		            </sonar.exclusions>
-		       	  </configuration>
-			      <executions>
-					  <execution>
-					    <phase>verify</phase>
-					    <goals>
-					      <goal>sonar</goal>
-					     </goals>
-					   </execution>
-					</executions>
-			   </plugin> -->
+			<plugin>
+	     		 <groupId>org.codehaus.mojo</groupId>
+	     		 <artifactId>sonar-maven-plugin</artifactId>
+	   		   <version>2.0</version>
+	    		   <executions>
+			    <execution>
+			    	<phase>verify</phase>
+			    	<goals>
+			      		<goal>sonar</goal>
+			      </goals>
+			    </execution>
+			   </executions>
+		         </plugin>
+
 			<!-- <plugin> <groupId>com.atlassian.maven.plugins</groupId> <artifactId>maven-clover2-plugin</artifactId> 
 				<version>3.1.12</version> <configuration> <encoding>utf-8</encoding> <license><![CDATA[PpOnrjlpFewlfppRpEgUBpPbqOQJCUXjxddDPtIMwGJDGG 
 				mi2KYwlOOX3WDaavVOPbBQRA2Ktgp87Kv<XxIdM4P76DSK QMRrXSqOOqMmOmnNoNrtxoMpPOnooOnRRpvvWUWVTVwsOn 
