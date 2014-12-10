@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="emp1" class="com.sample.mvc.domain.Employee">
+		<property name="name" value="John"/>
+		<property name="code" value="1693"/>
+		<property name="city" value="Montvale"/>
+	</bean>
+	
+	<bean id="emp2" class="com.sample.mvc.domain.Employee">
+		<property name="name" value="Will"/>
+		<property name="code" value="2563"/>
+		<property name="city" value="Banglore"/>
+	</bean>
+	
+	<bean id="emp3" class="com.sample.mvc.domain.Employee">
+		<property name="name" value="Bryan"/>
+		<property name="code" value="3963"/>
+		<property name="city" value="Denver"/>
+	</bean>
+	
+	<bean id="emp4" class="com.sample.mvc.domain.Employee">
+		<property name="name" value="Johnson"/>
+		<property name="code" value="1066"/>
+		<property name="city" value="Pune"/>
+	</bean>
+	
+	<bean id="employeeController" class="com.sample.mvc.controller.EmployeeController">
+		<property name="employeeService" ref="employeeService"/>
+	</bean>
+	
+	<bean id="employeeAddController" class="com.sample.mvc.controller.EmployeeAddController">
+		<property name="commandName" value="newEmployee"/>
+        <property name="commandClass" value="com.sample.mvc.command.EmployeeCommand"/>
+		<property name="formView" value="add"/>
+		<property name="successView" value="home.htm"/>
+		<property name="employeeService" ref="employeeService"/>
+	</bean>
+	
+	<bean id="employeeDeleteController" class="com.sample.mvc.controller.EmployeeDeleteController">
+		<property name="commandName" value="newEmployee"/>
+        <property name="commandClass" value="com.sample.mvc.command.EmployeeCommand"/>
+		<property name="formView" value="add"/>
+		<property name="successView" value="home.htm"/>
+		<property name="employeeService" ref="employeeService"/>
+	</bean>
+	
+	<bean id="employeeEditController" class="com.sample.mvc.controller.EmployeeEditController">
+		<property name="commandName" value="newEmployee"/>
+        <property name="commandClass" value="com.sample.mvc.command.EmployeeCommand"/>
+		<property name="formView" value="add"/>
+		<property name="successView" value="home.htm"/>
+		<property name="employeeService" ref="employeeService"/>
+	</bean>
+	
+	<bean id="employeeService" class="com.sample.mvc.service.EmployeeService">
+		<property name="employeeList">
+			<list>
+				<ref bean="emp1"/>
+				<ref bean="emp2"/>
+				<ref bean="emp3"/>
+				<ref bean="emp4"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="controllermap" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/home.htm">employeeController</prop>
+				<prop key="/add.htm">employeeAddController</prop>
+				<prop key="/edit.htm">employeeEditController</prop>
+				<prop key="/delete.htm">employeeDeleteController</prop>  
+			</props>
+		</property>
+	</bean>
+
+	 <!-- 
+	 <bean id="controllermap" class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+		<property name="order"><value>0</value></property>
+	</bean>
+	 -->
+	 
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/" />
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+ 
+</beans>
